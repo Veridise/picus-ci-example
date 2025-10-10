@@ -11,6 +11,5 @@ export AUDITHUB_ZIP_EXCLUDED_DIRECTORIES='[".git",".github",".findings",".vscode
 export AUDITHUB_ZIP_EXCLUDED_FILE_EXTENSIONS='["lcov.info","call_metrics.json",".DS_Store",".gitmodules",".gitignore",".env"]'
 
 # Create new version of the project on AuditHub.
-version_id=$(ah create-version-via-local-archive --name "@ga-${TIMESTAMP}" --source-folder ${PICUS_SRC_FOLDER})
+ah create-version-via-local-archive --name "@ga-${TIMESTAMP}" --source-folder ${PICUS_SRC_FOLDER}
 
-echo ${version_id}
