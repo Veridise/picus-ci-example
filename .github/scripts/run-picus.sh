@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -ex
 
 # Relative path from the project's root directory
 PICUS_FILE=$1
