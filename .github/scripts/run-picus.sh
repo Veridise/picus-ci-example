@@ -13,19 +13,5 @@ task_id=$(ah start-picus-v2-task --version-id ${VERSION_ID} --source ${PICUS_FIL
 # This is mainly for debugging, will let you inspect the logs.
 ah monitor-task --task-id $task_id
 
-ah download-artifact --task-id $task_id --step-code run-picus --name findings.json --output-file ./${PICUS_FILE}-findings.json
-
-# Check if Picus hit a time out or produced unknown findings.
-PICUS_COMPLETED=$(jq '.completed' ./${PICUS_FILE}-findings.json)
-
-if [[ ${PICUS_COMPLETED} == "false" ]]; then
-    echo "Picus was unable to verify ${PICUS_FILE}, check the logs for details."
-    exit 1
-fi
-
-PICUS_CEXES=$(jq '.findings.critical' ./${PICUS_FILE}-findings.json)
-
-if ((${PICUS_CEXES} != 0)); then
-    echo "Picus found a counterexample, check the logs for details."
-    exit 1
-fi
+# If both --verify and --check-completed checks pass, this means that picus verified all input modules.
+ah get-task-info --task-id $task_id --output none --verify --check-completed
