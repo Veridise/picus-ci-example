@@ -16,4 +16,4 @@ ah monitor-task --task-id $task_id
 
 # This will check for counterexamples (and exit with 1) and a potential timeout (and exit with 2)
 # Since it is the last command of the script, its exit code will become the script's exit code
-ah get-task-info --task-id $task_id --output none --verify --check_completed
+ah get-task-info --task-id $task_id --output none --verify --check-completed
