@@ -2,7 +2,7 @@
 
 set -ex
 
-PICUS_SRC_FOLDER=$1
+PICUS_SRC_FOLDER="$1"
 
 TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%S.%3NZ")
 
@@ -11,6 +11,6 @@ export AUDITHUB_ZIP_EXCLUDED_DIRECTORIES='[".git",".github",".findings",".vscode
 export AUDITHUB_ZIP_EXCLUDED_FILE_EXTENSIONS='["lcov.info","call_metrics.json",".DS_Store",".gitmodules",".gitignore",".env"]'
 
 # Create new version of the project on AuditHub.
-version_id=$(ah create-version-via-local-archive --name "@ga-${TIMESTAMP}" --source-folder ${PICUS_SRC_FOLDER})
+version_id=$(ah create-version-via-local-archive --name "@ga-${TIMESTAMP}" --source-folder "${PICUS_SRC_FOLDER}")
 
 echo ${version_id}
